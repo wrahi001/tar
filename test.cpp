@@ -15,13 +15,24 @@ int main() {
 	Root* root = new Root(sub);
 
 	cout << "--- PreOrder Iteration ---" << endl;
-	PreOrderIterator* pre_itr = new PreOrderIterator(sub);
+	PreOrderIterator* pre_itr = new PreOrderIterator(root);
 	for(pre_itr->first(); !pre_itr->is_done(); pre_itr->next()) {
-		cout << "Trying to print" << endl;
-		if (pre_itr->current() != NULL) {
-			pre_itr->current()->print();
-		}
-		cout << "Succesfully print" << endl;
+		pre_itr->current()->print();
+		cout << endl;
+	}
+	cout << endl;
+
+	Op* op5 = new Op(5);
+	Add* add2 = new Add(op5,op2);
+	Add* add3 = new Add(op3,op2);
+	Mult* mult = new Mult(add2, add3);
+	Root* root2 = new Root(mult);
+
+	cout << "--- PreOrder Iteration ---" << endl;
+
+	PreOrderIterator* itr = new PreOrderIterator(root2);
+	for(itr->first(); !itr->is_done(); itr->next()) {
+		itr->current()->print();
 		cout << endl;
 	}
 }

@@ -27,7 +27,6 @@ public:
 	OperatorIterator(Base* ptr) : Iterator(ptr) {
 		//self_ptr = ptr;
 		current_ptr = self_ptr;
-		cout << "Creates OperatorIterator" << endl;
 	}
 	void first();
 	void next();
@@ -47,7 +46,6 @@ class UnaryIterator : public Iterator {
 public:
 	UnaryIterator(Base* ptr) : Iterator(ptr) {
 		//self_ptr = ptr;
-		cout << "Creates UnaryIterator" << endl;
 	}
 	void first();
 	void next() {

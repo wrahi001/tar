@@ -9,11 +9,9 @@ void OperatorIterator::first() {
 
 void OperatorIterator::next() {
 	if(current_ptr == self_ptr->get_right()) { //if it's currently pointing to the right
-		cout << "current ptr set to null" << endl;
 		current_ptr = NULL;
 	}
 	else {
-		cout << "get right" << endl;
 		current_ptr = self_ptr->get_right();
 	}
 	
@@ -28,9 +26,8 @@ void PreOrderIterator::first() {
 		iterators.pop(); //empty the stack just in case we had something leftover
 	}
 	Iterator* itr = self_ptr->create_iterator();
-	cout << "Created iterator" << endl;
 	iterators.push(itr);
-	cout << "Pushes to stack" << endl;
+	iterators.top()->first();
 }
 
 void PreOrderIterator::next() {
@@ -38,13 +35,18 @@ void PreOrderIterator::next() {
 	//cout << "Creates iterator" << endl;
 	iterators.push(itr);
 	//cout << "Pushes iterator to stack" << endl;
+	
 	iterators.top()->first();
-
-	if(iterators.top()->is_done()) {
-		cout << "top Iterator finished" << endl;
+	while(iterators.top()->is_done()) {
 		iterators.pop();
-		cout << "Pops iterator off stack" << endl;
-		iterators.top()->next();
-		cout << "Calls next" << endl;
+		if(iterators.size() > 0)
+		{
+			iterators.top()->next();
+		}
+		if(iterators.size() == 0) {
+			return;
+		}
 	}
+	
+
 }
